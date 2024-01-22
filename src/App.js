@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import Landing from "./landing/landing";
+import Navigation from "./toolComponents/navigation/navigation";
+import Newnav from "./toolComponents/newnav/newnav";
+import Newlanding from "./pages/newlanding/newlanding";
+import Footer from "./toolComponents/footer/footer";
+
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+
+const Pages = () => {
+  return (
+    <div style={{ backgroundColor: "#F9F5F6" }}>
+      <Newnav />
+      <Routes>
+        <Route path="/" element={<Newlanding />}></Route>
+      </Routes>
+      <Footer />
+    </div>
+  );
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Pages />
+      </Router>
     </div>
   );
 }
