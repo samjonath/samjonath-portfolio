@@ -1,4 +1,4 @@
-// import './App.css';
+import "./App.css";
 import Landing from "./landing/landing";
 import Navigation from "./toolComponents/navigation/navigation";
 import Newnav from "./toolComponents/newnav/newnav";
@@ -9,7 +9,12 @@ import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 const Pages = () => {
   return (
-    <div style={{ backgroundColor: "#F9F5F6" }}>
+    <div
+      style={{
+        backgroundColor: "#F9F5F6",
+        fontFamily: "'Quattrocento Sans', sans-serif",
+      }}
+    >
       <Newnav />
       <Routes>
         <Route path="/" element={<Newlanding />}></Route>

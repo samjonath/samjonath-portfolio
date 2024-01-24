@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import { IconHome2 } from "@tabler/icons-react";
 
 const Container = styled.div`
   height: 100%;
@@ -9,7 +10,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-around;
   flex-direction: row;
-  margin: auto 30%;
+  margin: auto 30vw;
   background-color: rgba(227, 227, 227, 0.47);
   backdrop-filter: blur(8.3px);
   -webkit-backdrop-filter: blur(8.3px);
@@ -27,10 +28,23 @@ const Buttons = styled.button`
   border-radius: 10px;
   background-color: transparent;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1vw;
 `;
 const Newnav = () => {
   return (
+    // <Container>
+    //   <Buttons>Projects</Buttons>
+    //   <Buttons
+    //     style={{
+    //       backgroundColor: "black",
+    //       color: "white",
+    //       borderRadius: "50%",
+    //     }}
+    //   >
+    //     <IconHome2 size={20} />
+    //   </Buttons>
+    //   <Buttons>Contact</Buttons>
+    // </Container>
     <Container>
       <Link to="#intro">
         <Buttons>Home</Buttons>

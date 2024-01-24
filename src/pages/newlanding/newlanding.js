@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Autoplay from "embla-carousel-autoplay";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 import ProfilePhotoSrc from "../../assets/images/WhatsApp_Image_2023-08-10_at_01.35.47-removebg-preview.png";
 import newProPic from "../../assets/images/intro-pic.png";
 import ideaEmoji from "../../assets/images/idea-iemoji.png";
 import PeaceEmoji from "../../assets/images/peace-iemoji.png";
+import ABInbev from "../../assets/images/AB-InBev.png";
 import certi1 from "../../assets/images/certi1.jpg";
 import certi2 from "../../assets/images/certi2.png";
 import certi3 from "../../assets/images/certi3.png";
@@ -18,27 +21,21 @@ import certi7 from "../../assets/images/certi7.png";
 
 import resumePDF from "../../assets/files/Sam'sResume.pdf";
 
-import {
-  Card,
-  Image,
-  Text,
-  Badge,
-  Button,
-  Group,
-  Timeline,
-  rem,
-} from "@mantine/core";
+import { Card, Text, Button, Timeline } from "@mantine/core";
 import {
   IconGitBranch,
-  IconGitPullRequest,
-  IconGitCommit,
   IconMapPin,
   IconHourglassHigh,
-  IconArrowRight,
-  IconArrowLeft,
   IconDownload,
+  IconDeviceLaptop,
+  IconUsers,
+  IconRobot,
+  IconBooks,
 } from "@tabler/icons-react";
 import { Carousel } from "@mantine/carousel";
+
+import Skillset from "../../components/skillset/skillset";
+import Skills from "../../components/skillset/skills";
 
 const Container = styled.div``;
 const Intro = styled.div`
@@ -55,13 +52,13 @@ const NameSpace = styled.div`
   flex-direction: column;
 `;
 const Name = styled.h2`
-  font-size: 6rem;
+  font-size: 6vw;
   margin: 0;
 `;
 const Desig = styled.h3`
   background-color: #352f44;
   width: fit-content;
-  font-size: 2rem;
+  font-size: 2vw;
   border-radius: 1rem;
   padding: 0.5rem;
   margin: 0;
@@ -102,37 +99,7 @@ const AboutContent = styled.div`
 `;
 
 const SkillSetContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-const SkillSetTitleContainer = styled.div`
-  display: grid;
-  justify-items: start;
-  margin-top: 1rem;
-  width: 75%;
-`;
-const SkillSetTitle = styled.h3`
-  font-size: 4rem;
-  font-weight: 800;
-  color: #d8d9da;
-  margin: 0;
-`;
-const SkillSetContent = styled.div`
-  width: 75%;
-  display: flex;
-  justify-content: start;
-  flex-wrap: wrap;
-`;
-const Skills = styled.div`
-  padding: 3px 10px;
-  margin: 5px;
-  background-color: #352f44;
-  color: white;
-  border-radius: 5px;
-  border: 2px solid #376fb6;
-  box-shadow: 0 2px 3px #0000003;
+  margin-top: 15px;
 `;
 
 const ExperienceContainer = styled.div`
@@ -185,7 +152,7 @@ const AwardsContent = styled.div`
 const AwardsImageCont = styled.img`
   width: -webkit-fill-available;
   height: -webkit-fill-available;
-  padding: 10px 80px 30px 80px;
+  padding: 10px 14rem 30px 14rem;
 `;
 
 const DownloadCVContainer = styled.div`
@@ -199,6 +166,32 @@ const DownloadCVTitleContainer = styled.div`
   display: flex;
 `;
 
+const ProjectsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ProjectsTitleContainer = styled.div`
+  display: flex;
+  justify-items: start;
+  width: 75%;
+`;
+const ProjectsTitle = styled.h3`
+  font-size: 4rem;
+  font-weight: 800;
+  color: #d8d9da;
+  margin: 0;
+`;
+
+const ProjectsContent = styled.div`
+  width: 75%;
+  padding: 20px 10px;
+  background-color: #352f44;
+  border-radius: 30px;
+`;
+
 const Newlanding = () => {
   const autoplay = useRef(Autoplay({ delay: 5000 }));
 
@@ -210,6 +203,58 @@ const Newlanding = () => {
   const experienceRef = useRef(null);
   const resumeRef = useRef(null);
   const awardsRef = useRef(null);
+
+  const handleMouseMove = (event) => {
+    const card = event.currentTarget;
+    // card.style.backgroundColor = "transparent";
+    const boundingRect = card.getBoundingClientRect();
+
+    const offsetX = event.clientX - boundingRect.left;
+    const offsetY = event.clientY - boundingRect.top;
+
+    const translateX = (offsetX / boundingRect.width - 0.5) * 30;
+    const translateY = (offsetY / boundingRect.height - 0.5) * 30;
+
+    card.style.transition = "transform 0.2s ease-out"; // Add a smooth transition
+
+    card.style.transform = `translate(${translateX}px, ${translateY}px) scale(1.05)`;
+  };
+  const handleMouseMoveExtra = (event) => {
+    const card = event.currentTarget;
+    // card.style.backgroundColor = "transparent";
+    const boundingRect = card.getBoundingClientRect();
+
+    const offsetX = event.clientX - boundingRect.left;
+    const offsetY = event.clientY - boundingRect.top;
+
+    const translateX = (offsetX / boundingRect.width - 0.5) * 50;
+    const translateY = (offsetY / boundingRect.height - 0.5) * 50;
+
+    const rotateY = (offsetX / boundingRect.width - 0.5) * 15;
+    const rotateX = (0.5 - offsetY / boundingRect.height) * 15;
+
+    card.style.transition = "transform 0.5s ease-out"; // Add a smooth transition
+    card.style.transform = `translate(${translateX}px, ${translateY}px) scale(1.07) rotateX(${rotateX}deg) 
+          rotateY(${rotateY}deg)`;
+    card.style.borderRadius = "10px";
+    card.style.marginRight = "1rem";
+  };
+  const handleMouseLeave = (event) => {
+    const card = event.currentTarget;
+    // card.style.backgroundColor = "transparent";
+    card.style.transition = "transform 0.3s ease-in-out";
+    card.style.transform = "none";
+  };
+  const handleMouseLeaveExtra = (event) => {
+    const card = event.currentTarget;
+    card.style.transition = "transform 0.3s ease-in-out";
+    card.style.transform = "none";
+    // card.style.backgroundColor = "transparent";
+    card.style.padding = "0rem";
+    card.style.color = "black";
+    card.style.marginRight = "0rem";
+    card.style.boxShadow = "none";
+  };
 
   const scrollToSection = (ref) => {
     ref.current.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -251,21 +296,37 @@ const Newlanding = () => {
     link.click();
     document.body.removeChild(link);
   };
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
     <Container>
       <Intro id="intro" ref={introRef}>
-        <ProfilePhoto src={newProPic}></ProfilePhoto>
-        <NameSpace>
-          <Name>SAM JONATH</Name>
-          <Desig>I'M A FULL STACK WEB DEVELOPER</Desig>
+        <ProfilePhoto
+          src={newProPic}
+          onMouseMove={handleMouseMoveExtra}
+          onMouseLeave={handleMouseLeaveExtra}
+          data-aos="zoom-in"
+        ></ProfilePhoto>
+        <NameSpace
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
+          <Name data-aos="zoom-in">SAM JONATH</Name>
+          <Desig data-aos="zoom-in">
+            Full Stack Developer | AI/ML engineer
+          </Desig>
         </NameSpace>
       </Intro>
-      <About id="about" ref={aboutRef}>
+      <About id="about" ref={aboutRef} data-aos="fade-up">
         <AboutTitleContainer>
           <AboutTitle>ABOUT</AboutTitle>
           <AboutTitleExtra>Who am I?</AboutTitleExtra>
         </AboutTitleContainer>
-        <AboutContent>
+        <AboutContent
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
           <Card
             shadow="md"
             padding="xl"
@@ -273,162 +334,206 @@ const Newlanding = () => {
             style={{ backgroundColor: "white" }}
           >
             <Text style={{ fontSize: "16px" }} c="dimmed">
-              An enthusiastic undergraduate with good skills in coding and
+              {/* An enthusiastic undergraduate with good skills in coding and
               creativity. With interest in field of web development, machine
               learning and related areas. As a student I was good at science,
               Mathematics, Social but nothing interests me more than coding and
               create something out of pure creativity. There has been struggles
               in this journey but what kept me going is that I find learning new
-              things exciting and facing unfamiliar challenges. I believe that
-              ciphering is the language of future.
+              things exciting and facing unfamiliar challenges interesting. I
+              believe that ciphering is the language of future. */}
+              My journey into coding began in my gaming-filled childhood,
+              sparking a curiosity for tech creation. Exploring programming
+              languages and mastering problem-solving, I discovered the
+              fascinating realm of AI/ML. Motivated to create functional and
+              visually appealing solutions, I delved into web development. Now,
+              I craft elegant and efficient solutions that reach and assist
+              people in a simple yet effective manner.
+              {/* My coding expedition began through a childhood filled with gaming
+              and excitement. My curiosity of how these techs are made drove me into the field of computer science,
+              i started off by exploring various programming language and devloping a hold on complex problem solving
+              and stumbled upon the concept of AI/ML which i found very facinating and I spent alot of time exploring
+              the field of machine learning. throughout all this there was a part of me where i wanter to do more functional
+              and visually apealing solutions which reaches and helps people in simple yet efficient way, that when i pursued 
+              web development to create simple, elegant and efficent solutions. */}
             </Text>
           </Card>
         </AboutContent>
       </About>
       {/* next section------------------------------------------------------------------- */}
       <SkillSetContainer id="skills" ref={skillsRef}>
-        <SkillSetTitleContainer>
-          <SkillSetTitle>Skill Set</SkillSetTitle>
-        </SkillSetTitleContainer>
-        <SkillSetContent>
-          <Skills>React</Skills>
-          <Skills>Next.js</Skills>
-          <Skills>Material-UI</Skills>
-          <Skills>Framer-Motion</Skills>
-          <Skills>Mantine</Skills>
-          <Skills>HTML</Skills>
-          <Skills>CSS</Skills>
-          <Skills>Git</Skills>
-          <Skills>GitHub</Skills>
-          <Skills>Azure</Skills>
-          <Skills>Node.js</Skills>
-          <Skills>Python</Skills>
-          <Skills>Flask</Skills>
-          <Skills>GraphQL</Skills>
-          <Skills>FireBase</Skills>
-          <Skills>Django</Skills>
-          <Skills>SQL</Skills>
-          <Skills>PostMan</Skills>
-          <Skills>Docker</Skills>
-          <Skills>MSAL</Skills>
-          <Skills>JWT</Skills>
-        </SkillSetContent>
+        <Skillset data-aos="fade-up" />
       </SkillSetContainer>
       {/* next section------------------------------------------------------------------- */}
       <ExperienceContainer id="experience" ref={experienceRef}>
-        <ExperienceTitleContainer>
+        <ExperienceTitleContainer data-aos="fade-up">
           <ExperienceTitle>Experience</ExperienceTitle>
         </ExperienceTitleContainer>
-        <ExperienceContent>
-          <Timeline color="blue" active={0} bulletSize={50} lineWidth={10}>
+        <ExperienceContent data-aos="fade-up">
+          <Timeline color="blue" active={0} bulletSize={70} lineWidth={10}>
             <Timeline.Item
-              bullet={<IconGitBranch size={20} />}
+              bullet={<IconDeviceLaptop size={20} />}
               title="ABInBev GCC"
+              style={{ padding: "0 50px" }}
+              data-aos="fade-up"
             >
-              <Text size="md">Full-Stack Developer</Text>
-              <Text c="dimmed" size="sm">
-                MALT - Financial Reconciliation tool which will help in managing
-                Ambiguity in the Financial Data. Thrived in an Agile development
-                environment, fostering seamless collaboration with a team of
-                skilled developers. Demonstrated a strong sense of ownership by
-                crafting end-to- end optimal solutions, always with a keen eye
-                on long-term sustainability and success. Proficiently skilled in
-                a range of technologies, including React.js, Flask, Node.js,
-                SQL, and expertly utilized Mantine/Material UI, Postman, and
-                Azure DevOps to streamline the development process.
+              <Text size="md" data-aos="fade-left">
+                Full-Stack Developer
               </Text>
-              <div style={{ display: "flex", flexWrap: "wrap" }}>
-                <Skills>React</Skills>
-                <Skills>Flask</Skills>
-                <Skills>Node.js</Skills>
-                <Skills>SQL</Skills>
-                <Skills>Mantine/Material UI</Skills>
-                <Skills>Postman</Skills>
-                <Skills>Azure</Skills>
+              <Text
+                c="dimmed"
+                size="sm"
+                data-aos="fade-left"
+                style={{ margin: "10px 0" }}
+              >
+                Was part of a amazing team where we collabrated to develop a
+                Financial Recon Tool which will help in managing Ambiguity in
+                the Financial Data with simple and easy to understand interface
+                talior made for the companies structure. Thrived in an Agile
+                development environment, fostering seamless collaboration with a
+                team of skilled developers. Demonstrated a strong sense of
+                ownership by crafting end-to- end optimal solutions, always with
+                a keen eye on long-term sustainability and success.
+              </Text>
+              <div
+                style={{ display: "flex", flexWrap: "wrap" }}
+                data-aos="fade-left"
+              >
+                <Skills value="React" />
+                <Skills value="Flask" />
+                <Skills value="Node.js" />
+                <Skills value="SQL" />
+                <Skills value="Mantine/Material UI" />
+                <Skills value="Postman" />
+                <Skills value="Azure" />
               </div>
-
-              <Text size="xs" mt={4}>
+              <Text size="xs" mt={4} data-aos="fade-left">
                 <IconHourglassHigh size={15} style={{ marginRight: "5px" }} />
                 02/2023 - 07/2023
               </Text>
-              <Text size="xs" mt={4}>
+              <Text size="xs" mt={4} data-aos="fade-left">
                 <IconMapPin size={15} style={{ marginRight: "5px" }} />
                 Bangalore,India
               </Text>
             </Timeline.Item>
             <Timeline.Item
-              bullet={<IconGitBranch size={20} />}
+              bullet={<IconUsers size={20} />}
               title="Honeywell BCIC hackathon"
+              style={{ padding: "0 50px" }}
+              data-aos="fade-up"
             >
-              <Text size="md">National Finalist</Text>
-              <Text c="dimmed" size="sm">
+              <Text size="md" data-aos="fade-left">
+                National Finalist
+              </Text>
+              <Text c="dimmed" size="sm" data-aos="fade-left">
                 Secured Second position in inter University competition Across
                 India.
               </Text>
-              <Text c="dimmed" size="sm">
+              <Text c="dimmed" size="sm" data-aos="fade-left">
                 This consists of Two phases:
               </Text>
-              <Text c="dimmed" size="sm">
+              <Text c="dimmed" size="sm" data-aos="fade-left">
                 1.Ideation: come up with a social problem according to the
                 general problem statements given.
               </Text>
-              <Text c="dimmed" size="sm">
+              <Text c="dimmed" size="sm" data-aos="fade-left">
                 2.Implimentation: create a real-time web app/ solution for the
                 problem statement.
               </Text>
-              <div style={{ display: "flex", flexWrap: "wrap" }}>
-                <Skills>React</Skills>
-                <Skills>Flask</Skills>
-                <Skills>Node.js</Skills>
-                <Skills>SQL</Skills>
-                <Skills>Mantine/Material UI</Skills>
-                <Skills>Postman</Skills>
-                <Skills>Azure</Skills>
+              <div
+                style={{ display: "flex", flexWrap: "wrap" }}
+                data-aos="fade-left"
+              >
+                <Skills value="Django" />
+                <Skills value="NLP" />
+                <Skills value="python" />
+                <Skills value="Supervised Learning" />
+                <Skills value="BiDirectional LSTM" />
+                <Skills value="RandomForest" />
+                <Skills value="Google maps API" />
+                <Skills value="TomTom API" />
+                <Skills value="OpenWeather API" />
               </div>
-              <Text size="xs" mt={4}>
+              <Text size="xs" mt={4} data-aos="fade-left">
                 <IconHourglassHigh size={15} style={{ marginRight: "5px" }} />
                 09/2022 - 11/2022
               </Text>
-              <Text size="xs" mt={4}>
+              <Text size="xs" mt={4} data-aos="fade-left">
                 <IconMapPin size={15} style={{ marginRight: "5px" }} />
                 Bangalore,India
               </Text>
             </Timeline.Item>
             <Timeline.Item
-              bullet={<IconGitBranch size={20} />}
+              bullet={<IconRobot size={20} />}
               title="Feynn Labs"
+              style={{ padding: "0 50px" }}
+              data-aos="fade-up"
             >
-              <Text size="md">Machine Learning and Data Analysis Intern</Text>
-              <Text c="dimmed" size="sm">
+              <Text size="md" data-aos="fade-left">
+                Machine Learning and Data Analysis Intern
+              </Text>
+              <Text c="dimmed" size="sm" data-aos="fade-left">
                 AI product/Service Prototyping - Built a Diet Recommendation
                 Model, Creates a Diet plan according to the user’s Requirement.
                 Market segmentation using machine Learning and data- Analysis.
                 Worked on Machine Learning models, selenium for web Scraping and
                 Data annotation.
               </Text>
-              <div style={{ display: "flex", flexWrap: "wrap" }}>
-                <Skills>React</Skills>
-                <Skills>Flask</Skills>
-                <Skills>Node.js</Skills>
-                <Skills>SQL</Skills>
-                <Skills>Mantine/Material UI</Skills>
-                <Skills>Postman</Skills>
-                <Skills>Azure</Skills>
+              <div
+                style={{ display: "flex", flexWrap: "wrap" }}
+                data-aos="fade-left"
+              >
+                <Skills value="Python" />
+                <Skills value="Supervised/Unsupervised Models" />
+                <Skills value="NLP" />
+                <Skills value="Google Colab" />
+                <Skills value="tensorFlow" />
               </div>
-              <Text size="xs" mt={4}>
+              <Text size="xs" mt={4} data-aos="fade-left">
                 <IconHourglassHigh size={15} style={{ marginRight: "5px" }} />
                 03/2022 - 05/2022
               </Text>
-              <Text size="xs" mt={4}>
+              <Text size="xs" mt={4} data-aos="fade-left">
                 <IconMapPin size={15} style={{ marginRight: "5px" }} />
                 Bangalore,India
+              </Text>
+            </Timeline.Item>
+            <Timeline.Item
+              bullet={<IconBooks size={20} />}
+              title="Amrita School of Engineering "
+              style={{ padding: "0 50px" }}
+              data-aos="fade-up"
+            >
+              <Text size="md" data-aos="fade-left">
+                B.Tech in Electrical and Computer Engineering
+              </Text>
+              <Text c="dimmed" size="sm" data-aos="fade-left">
+                A Cource with Ample of oppertunities, learning from ground up of
+                the computer science world.
+              </Text>
+              <div
+                style={{ display: "flex", flexWrap: "wrap" }}
+                data-aos="fade-left"
+              >
+                <Skills value="DSA" />
+                <Skills value="AI/ML" />
+                <Skills value="Computer Network" />
+                <Skills value="DBMS" />
+              </div>
+              <Text size="xs" mt={4} data-aos="fade-left">
+                <IconHourglassHigh size={15} style={{ marginRight: "5px" }} />
+                03/2022 - 05/2022
+              </Text>
+              <Text size="xs" mt={4} data-aos="fade-left">
+                <IconMapPin size={15} style={{ marginRight: "5px" }} />
+                Coimbatore,India
               </Text>
             </Timeline.Item>
           </Timeline>
         </ExperienceContent>
       </ExperienceContainer>
       {/* next section------------------------------------------------------------------- */}
-      <DownloadCVContainer id="resume" ref={resumeRef}>
+      <DownloadCVContainer id="resume" ref={resumeRef} data-aos="fade-up">
         <DownloadCVTitleContainer>
           <div
             style={{
@@ -464,16 +569,19 @@ const Newlanding = () => {
         </DownloadCVTitleContainer>
       </DownloadCVContainer>
       {/* next section------------------------------------------------------------------- */}
-      <AwardsContainer id="awards" ref={awardsRef}>
+      <AwardsContainer id="awards" ref={awardsRef} data-aos="fade-up">
         <AwardsTitleContainer>
           <AwardsTitle>Awards</AwardsTitle>
         </AwardsTitleContainer>
-        <AwardsContent>
+        <AwardsContent
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
           <Carousel
             withIndicators
             slideGap="md"
             loop
-            height={"35rem"}
+            height={"25rem"}
             plugins={[autoplay.current]}
             onMouseEnter={autoplay.current.stop}
             onMouseLeave={autoplay.current.reset}
@@ -503,6 +611,7 @@ const Newlanding = () => {
           </Carousel>
         </AwardsContent>
       </AwardsContainer>
+      {/* next section------------------------------------------------------------------- */}
     </Container>
   );
 };
