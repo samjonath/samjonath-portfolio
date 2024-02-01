@@ -1,19 +1,40 @@
-import React from "react";
+import { Reac, useEffect } from "react";
 import styled from "styled-components";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
-const SkillsEntity = styled.div`
-  padding: 3px 10px;
-  margin: 5px;
-  background-color: #352f44;
-  color: white;
-  border-radius: 5px;
-  ${"" /* border: 2px solid #376fb6; */}
-  box-shadow: 0 2px 3px #0000003;
+import newProPic from "../../assets/images/intro-pic.png";
+
+const IntroComp = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 0;
 `;
-
-const Skills = (props) => {
+const ProfilePhoto = styled.img`
+  width: 25%;
+`;
+const NameSpace = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const Name = styled.h2`
+  font-size: 6vw;
+  margin: 0;
+`;
+const Desig = styled.h3`
+  background-color: #352f44;
+  width: fit-content;
+  font-size: 2vw;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  margin: 0;
+  color: white;
+`;
+const Intro = () => {
   const handleMouseMove = (event) => {
     const card = event.currentTarget;
+    // card.style.backgroundColor = "transparent";
     const boundingRect = card.getBoundingClientRect();
 
     const offsetX = event.clientX - boundingRect.left;
@@ -28,6 +49,7 @@ const Skills = (props) => {
   };
   const handleMouseMoveExtra = (event) => {
     const card = event.currentTarget;
+    // card.style.backgroundColor = "transparent";
     const boundingRect = card.getBoundingClientRect();
 
     const offsetX = event.clientX - boundingRect.left;
@@ -47,6 +69,7 @@ const Skills = (props) => {
   };
   const handleMouseLeave = (event) => {
     const card = event.currentTarget;
+    // card.style.backgroundColor = "transparent";
     card.style.transition = "transform 0.3s ease-in-out";
     card.style.transform = "none";
   };
@@ -54,16 +77,29 @@ const Skills = (props) => {
     const card = event.currentTarget;
     card.style.transition = "transform 0.3s ease-in-out";
     card.style.transform = "none";
+    // card.style.backgroundColor = "transparent";
     card.style.padding = "0rem";
     card.style.color = "black";
     card.style.marginRight = "0rem";
     card.style.boxShadow = "none";
   };
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
-    <SkillsEntity onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-      {props.value}
-    </SkillsEntity>
+    <IntroComp id="intro">
+      <ProfilePhoto
+        src={newProPic}
+        onMouseMove={handleMouseMoveExtra}
+        onMouseLeave={handleMouseLeaveExtra}
+        data-aos="zoom-in"
+      ></ProfilePhoto>
+      <NameSpace onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+        <Name data-aos="zoom-in">SAM JONATH</Name>
+        <Desig data-aos="zoom-in">Full Stack Developer | AI/ML engineer</Desig>
+      </NameSpace>
+    </IntroComp>
   );
 };
 
-export default Skills;
+export default Intro;

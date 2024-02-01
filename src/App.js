@@ -4,6 +4,8 @@ import Navigation from "./toolComponents/navigation/navigation";
 import Newnav from "./toolComponents/newnav/newnav";
 import Newlanding from "./pages/newlanding/newlanding";
 import Footer from "./toolComponents/footer/footer";
+import Projects from "./pages/projects/projects";
+import Contact from "./pages/contact/contact";
 
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
@@ -18,6 +20,8 @@ const Pages = () => {
       <Newnav />
       <Routes>
         <Route path="/" element={<Newlanding />}></Route>
+        <Route path="/projects" element={<Projects />}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
       </Routes>
       <Footer />
     </div>

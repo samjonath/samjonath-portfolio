@@ -6,11 +6,8 @@ import Autoplay from "embla-carousel-autoplay";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
-import ProfilePhotoSrc from "../../assets/images/WhatsApp_Image_2023-08-10_at_01.35.47-removebg-preview.png";
-import newProPic from "../../assets/images/intro-pic.png";
 import ideaEmoji from "../../assets/images/idea-iemoji.png";
 import PeaceEmoji from "../../assets/images/peace-iemoji.png";
-import ABInbev from "../../assets/images/AB-InBev.png";
 import certi1 from "../../assets/images/certi1.jpg";
 import certi2 from "../../assets/images/certi2.png";
 import certi3 from "../../assets/images/certi3.png";
@@ -36,34 +33,9 @@ import { Carousel } from "@mantine/carousel";
 
 import Skillset from "../../components/skillset/skillset";
 import Skills from "../../components/skillset/skills";
+import Intro from "../../components/intro/intro";
 
 const Container = styled.div``;
-const Intro = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-bottom: 0;
-`;
-const ProfilePhoto = styled.img`
-  width: 25%;
-`;
-const NameSpace = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const Name = styled.h2`
-  font-size: 6vw;
-  margin: 0;
-`;
-const Desig = styled.h3`
-  background-color: #352f44;
-  width: fit-content;
-  font-size: 2vw;
-  border-radius: 1rem;
-  padding: 0.5rem;
-  margin: 0;
-  color: white;
-`;
 
 const About = styled.div`
   display: flex;
@@ -164,32 +136,6 @@ const DownloadCVContainer = styled.div`
 const DownloadCVTitleContainer = styled.div`
   width: 75%;
   display: flex;
-`;
-
-const ProjectsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const ProjectsTitleContainer = styled.div`
-  display: flex;
-  justify-items: start;
-  width: 75%;
-`;
-const ProjectsTitle = styled.h3`
-  font-size: 4rem;
-  font-weight: 800;
-  color: #d8d9da;
-  margin: 0;
-`;
-
-const ProjectsContent = styled.div`
-  width: 75%;
-  padding: 20px 10px;
-  background-color: #352f44;
-  border-radius: 30px;
 `;
 
 const Newlanding = () => {
@@ -301,23 +247,7 @@ const Newlanding = () => {
   }, []);
   return (
     <Container>
-      <Intro id="intro" ref={introRef}>
-        <ProfilePhoto
-          src={newProPic}
-          onMouseMove={handleMouseMoveExtra}
-          onMouseLeave={handleMouseLeaveExtra}
-          data-aos="zoom-in"
-        ></ProfilePhoto>
-        <NameSpace
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-        >
-          <Name data-aos="zoom-in">SAM JONATH</Name>
-          <Desig data-aos="zoom-in">
-            Full Stack Developer | AI/ML engineer
-          </Desig>
-        </NameSpace>
-      </Intro>
+      <Intro />
       <About id="about" ref={aboutRef} data-aos="fade-up">
         <AboutTitleContainer>
           <AboutTitle>ABOUT</AboutTitle>
@@ -369,7 +299,11 @@ const Newlanding = () => {
         <ExperienceTitleContainer data-aos="fade-up">
           <ExperienceTitle>Experience</ExperienceTitle>
         </ExperienceTitleContainer>
-        <ExperienceContent data-aos="fade-up">
+        <ExperienceContent
+          data-aos="fade-up"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
           <Timeline color="blue" active={0} bulletSize={70} lineWidth={10}>
             <Timeline.Item
               bullet={<IconDeviceLaptop size={20} />}
