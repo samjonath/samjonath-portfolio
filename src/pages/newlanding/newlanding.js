@@ -68,6 +68,12 @@ const AboutTitleExtra = styled.h3`
 const AboutContent = styled.div`
   width: 75%;
   margin-bottom: 20px;
+  @media only screen and (max-width: 600px) {
+    font-size: 0.8rem;
+  }
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const SkillSetContainer = styled.div`
@@ -91,6 +97,12 @@ const ExperienceTitle = styled.h3`
   font-weight: 800;
   color: #d8d9da;
   margin: 0;
+  @media only screen and (max-width: 600px) {
+    font-size: 3rem;
+  }
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    font-size: 3.5rem;
+  }
 `;
 const ExperienceContent = styled.div`
   width: 75%;
@@ -125,6 +137,12 @@ const AwardsImageCont = styled.img`
   width: -webkit-fill-available;
   height: -webkit-fill-available;
   padding: 10px 14rem 30px 14rem;
+  @media only screen and (max-width: 600px) {
+    padding: 10px 14rem 30px 14rem;
+  }
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    padding: 10px 14rem 30px 14rem;
+  }
 `;
 
 const DownloadCVContainer = styled.div`
@@ -136,6 +154,24 @@ const DownloadCVContainer = styled.div`
 const DownloadCVTitleContainer = styled.div`
   width: 75%;
   display: flex;
+`;
+
+const DownloadInnerDiv = styled.div`
+  width: 25%;
+  border-radius: 30px;
+  background-color: #352f44;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin: 4rem 0px;
+  @media only screen and (max-width: 600px) {
+    margin: 4rem 0px;
+    width: 70%;
+  }
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    margin: 4rem 0px;
+    width: 45%;
+  }
 `;
 
 const Newlanding = () => {
@@ -248,8 +284,8 @@ const Newlanding = () => {
   return (
     <Container>
       <Intro />
-      <About id="about" ref={aboutRef} data-aos="fade-up">
-        <AboutTitleContainer>
+      <About id="about" ref={aboutRef}>
+        <AboutTitleContainer data-aos="fade-up">
           <AboutTitle>ABOUT</AboutTitle>
           <AboutTitleExtra>Who am I?</AboutTitleExtra>
         </AboutTitleContainer>
@@ -262,8 +298,9 @@ const Newlanding = () => {
             padding="xl"
             radius="lg"
             style={{ backgroundColor: "white" }}
+            data-aos="fade-up"
           >
-            <Text style={{ fontSize: "16px" }} c="dimmed">
+            <Text c="dimmed">
               {/* An enthusiastic undergraduate with good skills in coding and
               creativity. With interest in field of web development, machine
               learning and related areas. As a student I was good at science,
@@ -292,7 +329,7 @@ const Newlanding = () => {
       </About>
       {/* next section------------------------------------------------------------------- */}
       <SkillSetContainer id="skills" ref={skillsRef}>
-        <Skillset data-aos="fade-up" />
+        <Skillset />
       </SkillSetContainer>
       {/* next section------------------------------------------------------------------- */}
       <ExperienceContainer id="experience" ref={experienceRef}>
@@ -300,7 +337,6 @@ const Newlanding = () => {
           <ExperienceTitle>Experience</ExperienceTitle>
         </ExperienceTitleContainer>
         <ExperienceContent
-          data-aos="fade-up"
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         >
@@ -311,15 +347,8 @@ const Newlanding = () => {
               style={{ padding: "0 50px" }}
               data-aos="fade-up"
             >
-              <Text size="md" data-aos="fade-left">
-                Full-Stack Developer
-              </Text>
-              <Text
-                c="dimmed"
-                size="sm"
-                data-aos="fade-left"
-                style={{ margin: "10px 0" }}
-              >
+              <Text size="md">Full-Stack Developer</Text>
+              <Text c="dimmed" size="sm" style={{ margin: "10px 0" }}>
                 Was part of a amazing team where we collabrated to develop a
                 Financial Recon Tool which will help in managing Ambiguity in
                 the Financial Data with simple and easy to understand interface
@@ -329,10 +358,7 @@ const Newlanding = () => {
                 ownership by crafting end-to- end optimal solutions, always with
                 a keen eye on long-term sustainability and success.
               </Text>
-              <div
-                style={{ display: "flex", flexWrap: "wrap" }}
-                data-aos="fade-left"
-              >
+              <div style={{ display: "flex", flexWrap: "wrap" }}>
                 <Skills value="React" />
                 <Skills value="Flask" />
                 <Skills value="Node.js" />
@@ -341,11 +367,11 @@ const Newlanding = () => {
                 <Skills value="Postman" />
                 <Skills value="Azure" />
               </div>
-              <Text size="xs" mt={4} data-aos="fade-left">
+              <Text size="xs" mt={4}>
                 <IconHourglassHigh size={15} style={{ marginRight: "5px" }} />
                 02/2023 - 07/2023
               </Text>
-              <Text size="xs" mt={4} data-aos="fade-left">
+              <Text size="xs" mt={4}>
                 <IconMapPin size={15} style={{ marginRight: "5px" }} />
                 Bangalore,India
               </Text>
@@ -356,28 +382,23 @@ const Newlanding = () => {
               style={{ padding: "0 50px" }}
               data-aos="fade-up"
             >
-              <Text size="md" data-aos="fade-left">
-                National Finalist
-              </Text>
-              <Text c="dimmed" size="sm" data-aos="fade-left">
+              <Text size="md">National Finalist</Text>
+              <Text c="dimmed" size="sm">
                 Secured Second position in inter University competition Across
                 India.
               </Text>
-              <Text c="dimmed" size="sm" data-aos="fade-left">
+              <Text c="dimmed" size="sm">
                 This consists of Two phases:
               </Text>
-              <Text c="dimmed" size="sm" data-aos="fade-left">
+              <Text c="dimmed" size="sm">
                 1.Ideation: come up with a social problem according to the
                 general problem statements given.
               </Text>
-              <Text c="dimmed" size="sm" data-aos="fade-left">
+              <Text c="dimmed" size="sm">
                 2.Implimentation: create a real-time web app/ solution for the
                 problem statement.
               </Text>
-              <div
-                style={{ display: "flex", flexWrap: "wrap" }}
-                data-aos="fade-left"
-              >
+              <div style={{ display: "flex", flexWrap: "wrap" }}>
                 <Skills value="Django" />
                 <Skills value="NLP" />
                 <Skills value="python" />
@@ -388,11 +409,11 @@ const Newlanding = () => {
                 <Skills value="TomTom API" />
                 <Skills value="OpenWeather API" />
               </div>
-              <Text size="xs" mt={4} data-aos="fade-left">
+              <Text size="xs" mt={4}>
                 <IconHourglassHigh size={15} style={{ marginRight: "5px" }} />
                 09/2022 - 11/2022
               </Text>
-              <Text size="xs" mt={4} data-aos="fade-left">
+              <Text size="xs" mt={4}>
                 <IconMapPin size={15} style={{ marginRight: "5px" }} />
                 Bangalore,India
               </Text>
@@ -403,31 +424,26 @@ const Newlanding = () => {
               style={{ padding: "0 50px" }}
               data-aos="fade-up"
             >
-              <Text size="md" data-aos="fade-left">
-                Machine Learning and Data Analysis Intern
-              </Text>
-              <Text c="dimmed" size="sm" data-aos="fade-left">
+              <Text size="md">Machine Learning and Data Analysis Intern</Text>
+              <Text c="dimmed" size="sm">
                 AI product/Service Prototyping - Built a Diet Recommendation
                 Model, Creates a Diet plan according to the user’s Requirement.
                 Market segmentation using machine Learning and data- Analysis.
                 Worked on Machine Learning models, selenium for web Scraping and
                 Data annotation.
               </Text>
-              <div
-                style={{ display: "flex", flexWrap: "wrap" }}
-                data-aos="fade-left"
-              >
+              <div style={{ display: "flex", flexWrap: "wrap" }}>
                 <Skills value="Python" />
                 <Skills value="Supervised/Unsupervised Models" />
                 <Skills value="NLP" />
                 <Skills value="Google Colab" />
                 <Skills value="tensorFlow" />
               </div>
-              <Text size="xs" mt={4} data-aos="fade-left">
+              <Text size="xs" mt={4}>
                 <IconHourglassHigh size={15} style={{ marginRight: "5px" }} />
                 03/2022 - 05/2022
               </Text>
-              <Text size="xs" mt={4} data-aos="fade-left">
+              <Text size="xs" mt={4}>
                 <IconMapPin size={15} style={{ marginRight: "5px" }} />
                 Bangalore,India
               </Text>
@@ -438,27 +454,24 @@ const Newlanding = () => {
               style={{ padding: "0 50px" }}
               data-aos="fade-up"
             >
-              <Text size="md" data-aos="fade-left">
+              <Text size="md">
                 B.Tech in Electrical and Computer Engineering
               </Text>
-              <Text c="dimmed" size="sm" data-aos="fade-left">
+              <Text c="dimmed" size="sm">
                 A Cource with Ample of oppertunities, learning from ground up of
                 the computer science world.
               </Text>
-              <div
-                style={{ display: "flex", flexWrap: "wrap" }}
-                data-aos="fade-left"
-              >
+              <div style={{ display: "flex", flexWrap: "wrap" }}>
                 <Skills value="DSA" />
                 <Skills value="AI/ML" />
                 <Skills value="Computer Network" />
                 <Skills value="DBMS" />
               </div>
-              <Text size="xs" mt={4} data-aos="fade-left">
+              <Text size="xs" mt={4}>
                 <IconHourglassHigh size={15} style={{ marginRight: "5px" }} />
                 03/2022 - 05/2022
               </Text>
-              <Text size="xs" mt={4} data-aos="fade-left">
+              <Text size="xs" mt={4}>
                 <IconMapPin size={15} style={{ marginRight: "5px" }} />
                 Coimbatore,India
               </Text>
@@ -469,17 +482,7 @@ const Newlanding = () => {
       {/* next section------------------------------------------------------------------- */}
       <DownloadCVContainer id="resume" ref={resumeRef} data-aos="fade-up">
         <DownloadCVTitleContainer>
-          <div
-            style={{
-              width: "25%",
-              borderRadius: "30px",
-              backgroundColor: "#352F44",
-              padding: "10px",
-              display: "flex",
-              alignItems: "center",
-              margin: "4rem 0px",
-            }}
-          >
+          <DownloadInnerDiv>
             <Button
               variant="light"
               style={{ borderRadius: "30px" }}
@@ -490,7 +493,7 @@ const Newlanding = () => {
             <span style={{ marginLeft: "10px", color: "white" }}>
               DOWNLOAD RESUME
             </span>
-          </div>
+          </DownloadInnerDiv>
           <img
             src={ideaEmoji}
             style={{
@@ -503,7 +506,7 @@ const Newlanding = () => {
         </DownloadCVTitleContainer>
       </DownloadCVContainer>
       {/* next section------------------------------------------------------------------- */}
-      <AwardsContainer id="awards" ref={awardsRef} data-aos="fade-up">
+      <AwardsContainer id="awards" ref={awardsRef}>
         <AwardsTitleContainer>
           <AwardsTitle>Awards</AwardsTitle>
         </AwardsTitleContainer>
@@ -516,9 +519,9 @@ const Newlanding = () => {
             slideGap="md"
             loop
             height={"25rem"}
-            plugins={[autoplay.current]}
-            onMouseEnter={autoplay.current.stop}
-            onMouseLeave={autoplay.current.reset}
+            // plugins={[autoplay.current]}
+            // onMouseEnter={autoplay.current.stop}
+            // onMouseLeave={autoplay.current.reset}
             style={{ borderRadius: "30px" }}
           >
             <Carousel.Slide>

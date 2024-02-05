@@ -1,7 +1,9 @@
-import React from "react";
+import { React, useEffect } from "react";
 import styled from "styled-components";
 
 import Skills from "./skills";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const SkillSetContainer = styled.div`
   display: flex;
@@ -21,6 +23,12 @@ const SkillSetTitle = styled.h3`
   font-weight: 800;
   color: #d8d9da;
   margin: 0;
+  @media only screen and (max-width: 600px) {
+    font-size: 3rem;
+  }
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    font-size: 3.5rem;
+  }
 `;
 const SkillSetContent = styled.div`
   width: 75%;
@@ -30,12 +38,15 @@ const SkillSetContent = styled.div`
 `;
 
 const Skillset = () => {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
     <SkillSetContainer>
-      <SkillSetTitleContainer>
+      <SkillSetTitleContainer data-aos="fade-up">
         <SkillSetTitle>Skill Set</SkillSetTitle>
       </SkillSetTitleContainer>
-      <SkillSetContent>
+      <SkillSetContent data-aos="fade-up">
         <Skills value="ReactJS" />
         <Skills value="Next.js" />
         <Skills value="Material-UI" />

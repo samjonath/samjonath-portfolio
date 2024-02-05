@@ -87,16 +87,15 @@ const Intro = () => {
     Aos.init({ duration: 1000 });
   }, []);
   return (
-    <IntroComp id="intro">
+    <IntroComp id="intro" data-aos="fade-up">
       <ProfilePhoto
         src={newProPic}
         onMouseMove={handleMouseMoveExtra}
         onMouseLeave={handleMouseLeaveExtra}
-        data-aos="zoom-in"
       ></ProfilePhoto>
       <NameSpace onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-        <Name data-aos="zoom-in">SAM JONATH</Name>
-        <Desig data-aos="zoom-in">Full Stack Developer | AI/ML engineer</Desig>
+        <Name>SAM JONATH</Name>
+        <Desig>Full Stack Developer | AI/ML engineer</Desig>
       </NameSpace>
     </IntroComp>
   );

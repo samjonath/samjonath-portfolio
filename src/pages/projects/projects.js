@@ -42,6 +42,12 @@ const NewCard = styled.div`
   position: sticky;
   flex-direction: row;
   top: 14vh;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    flex-direction: column;
+  }
 `;
 
 const TitleContainer = styled.div`
@@ -77,6 +83,14 @@ const ProjectImage = styled.img`
   border-radius: 30px;
   object-fit: cover;
   margin: 2vh 3vw;
+  @media only screen and (max-width: 600px) {
+    width: 80%;
+    height: 70%;
+  }
+  @media only screen and (min-width: 601px) and (max-width: 800px) {
+    width: 60%;
+    height: 70%;
+  }
 `;
 const ProjectDesc = styled.div`
   margin: 0px 2vw;
@@ -318,14 +332,9 @@ const Projects = () => {
             </ProjectMoreInfo>
             <ProjectDescTitle>AYURVEDIC DRUG REVIEW (NLP)</ProjectDescTitle>
             <ProjectDescAbout>
-              About Project An enthusiastic undergraduate with good skills in
-              coding and creativity. With interest in field of web development,
-              machine learning and related areas. As a student I was good at
-              science, Mathematics, Social but nothing interests me more than
-              coding and create something out of pure creativity. There has been
-              struggles in this journey but what kept me going is that I find
-              learning new things exciting and facing unfamiliar challenges
-              interesting. I believe that ciphering is the language of future.
+              Using multiple ML models and classifiers test the accuracy result
+              of the models by feeding custom dataset scrapped from multiple
+              sources like MDN, twitter
             </ProjectDescAbout>
             <ProjectDescSkills>
               <Skills value="React" />

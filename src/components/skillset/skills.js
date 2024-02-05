@@ -7,8 +7,13 @@ const SkillsEntity = styled.div`
   background-color: #352f44;
   color: white;
   border-radius: 5px;
-  ${"" /* border: 2px solid #376fb6; */}
   box-shadow: 0 2px 3px #0000003;
+  @media only screen and (max-width: 600px) {
+    font-size: 0.8rem;
+  }
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const Skills = (props) => {
